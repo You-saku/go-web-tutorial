@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"go-sample-app/pkg/controllers"
+	"go-sample-app/pkg/presentation/controllers"
 )
 
 // routing

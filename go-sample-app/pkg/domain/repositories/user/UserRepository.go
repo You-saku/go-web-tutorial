@@ -7,7 +7,11 @@ import (
 	"go-sample-app/pkg/infrastructure"
 )
 
-func FindUserById(id string) models.User {
+// 本番用のリポジトリ
+type UserRepository struct {
+}
+
+func (rep *UserRepository) FindUserById(id string) models.User {
 	var user models.User
 
 	// まだコネクトを都度行う
