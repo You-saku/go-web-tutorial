@@ -14,9 +14,8 @@ func ShowUserHandler(w http.ResponseWriter, r *http.Request) {
 	userId := strings.TrimPrefix(r.URL.Path, "/users/")
 
 	repository := Repository.UserRepository{}
-	service := services.UserService{
-		Rep: repository,
-	}
+	service := services.NewUserService(&repository)
+
 	user := service.ShowUser(userId)
 
 	fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
