@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"go-sample-app/pkg/presentation/controllers"
+	userController "go-sample-app/pkg/presentation/controllers/user"
 )
 
 // routing
@@ -17,7 +17,17 @@ func main() {
 
 	// net/http
 	http.HandleFunc("/", sampleHandler)
-	http.HandleFunc("/users/", controllers.ShowUserHandler)
+	http.HandleFunc("/users", userController.UserGetHandler)
+	http.HandleFunc("/users/", userController.UserShowHandler)
+
+	/**
+	TODO: postやput, deleteをどうするのか
+	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
+	if requestMethod != "GET" {
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	**/
 
 	log.Fatal(http.ListenAndServe(":80", nil))
 }

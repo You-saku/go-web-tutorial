@@ -20,6 +20,10 @@ func NewUserService(rep UserRepositories.IUserRepository) *UserService {
 	return userService
 }
 
+func (s *UserService) ShowUsers() []models.User {
+	return s.Rep.GetAllUsers()
+}
+
 func (s *UserService) ShowUser(userId string) models.User {
 	return s.Rep.FindUserById(userId)
 }
