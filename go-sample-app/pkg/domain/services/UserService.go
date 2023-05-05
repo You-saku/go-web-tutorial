@@ -11,7 +11,7 @@ type UserService struct {
 
 /**
  * コンストラクタ(Effective Goにあった)
- * http://go.shibu.jp/effective_go.html#id16
+ * https://d-tsuji.github.io/effective_go/documents/effective_go_ja.html#id19
  */
 func NewUserService(rep UserRepositories.IUserRepository) *UserService {
 	userService := new(UserService)
