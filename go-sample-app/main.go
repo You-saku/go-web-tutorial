@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	todoController "go-sample-app/pkg/presentation/controllers/todo"
 	userController "go-sample-app/pkg/presentation/controllers/user"
 )
 
@@ -19,6 +20,8 @@ func main() {
 	http.HandleFunc("/", sampleHandler)
 	http.HandleFunc("/users", userController.UserGetHandler)
 	http.HandleFunc("/users/", userController.UserShowHandler)
+
+	http.HandleFunc("/posts", todoController.TodoCreateHandler)
 
 	/**
 	TODO: postやput, deleteをどうするのか
