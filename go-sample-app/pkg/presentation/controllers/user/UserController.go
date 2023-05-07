@@ -18,7 +18,26 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	// サービス層作成
 	service := service.NewUserService(&repository)
 
-	user := service.ShowUser(userId)
+	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
 
-	fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
+	// GET
+	if requestMethod == "GET" {
+		user := service.ShowUser(userId)
+		fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
+		return
+	}
+	// PUT
+	if requestMethod == "PUT" {
+		service.UpdateUser(userId)
+		return
+	}
+	// DELETE
+	if requestMethod == "DELETE" {
+		service.DeleteUser(userId)
+		return
+	}
+
+	// それ以外のメソッドはエラー
+	http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+	return
 }

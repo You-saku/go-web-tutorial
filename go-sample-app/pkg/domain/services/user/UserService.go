@@ -31,3 +31,11 @@ func (s *UserService) ShowUser(userId string) models.User {
 func (s *UserService) CreateUser() {
 	s.Rep.NewUser()
 }
+
+func (s *UserService) UpdateUser(userId string) {
+	s.Rep.UpdateUser(userId)
+}
+
+func (s *UserService) DeleteUser(userId string) {
+	s.Rep.DeleteUser(userId)
+}

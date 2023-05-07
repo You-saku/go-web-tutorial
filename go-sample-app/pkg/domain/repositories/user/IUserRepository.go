@@ -8,4 +8,6 @@ type IUserRepository interface {
 	FindUserById(id string) models.User
 	GetAllUsers() []models.User
 	NewUser()
+	UpdateUser(id string)
+	DeleteUser(id string)
 }

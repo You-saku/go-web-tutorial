@@ -95,3 +95,39 @@ func (rep *UserRepository) NewUser() {
 	log.Printf("新規ユーザーを作成しました")
 	log.Printf("id = %d, affected = %d\n", lastId, rowCnt)
 }
+
+// TODO: 汎用的にする
+func (rep *UserRepository) UpdateUser(id string) {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+	// TODO: 汎用的にする
+	res, err := db.Exec("UPDATE users set updated_at = ? WHERE id = ?", time.Now(), id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("ユーザーを更新しました")
+	log.Printf("id = %s, affected = %d\n", id, rowCnt)
+}
+
+func (rep *UserRepository) DeleteUser(id string) {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+	res, err := db.Exec("DELETE FROM users where id = ?", id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("ユーザーを削除しました")
+	log.Printf("id = %s, affected = %d\n", id, rowCnt)
+}
