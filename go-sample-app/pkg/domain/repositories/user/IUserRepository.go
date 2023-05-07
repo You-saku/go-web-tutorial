@@ -5,6 +5,9 @@ import (
 )
 
 type IUserRepository interface {
-	FindUserById(id string) models.User
-	GetAllUsers() []models.User
+	FindById(id string) models.User
+	GetAll() []models.User
+	New()
+	Update(id string)
+	Delete(id string)
 }

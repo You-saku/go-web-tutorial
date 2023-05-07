@@ -18,19 +18,13 @@ func main() {
 
 	// net/http
 	http.HandleFunc("/", sampleHandler)
-	http.HandleFunc("/users", userController.UserGetHandler)
-	http.HandleFunc("/users/", userController.UserShowHandler)
 
-	http.HandleFunc("/posts", todoController.TodoCreateHandler)
+	// user関連
+	http.HandleFunc("/users", userController.UsersHandler)
+	http.HandleFunc("/users/", userController.UserHandler)
 
-	/**
-	TODO: postやput, deleteをどうするのか
-	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
-	if requestMethod != "GET" {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
-	**/
+	// todo関連
+	http.HandleFunc("/todos", todoController.TodoCreateHandler)
 
 	log.Fatal(http.ListenAndServe(":80", nil))
 }

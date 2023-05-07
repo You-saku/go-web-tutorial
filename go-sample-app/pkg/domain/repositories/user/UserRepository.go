@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"log"
+	"time"
 
 	"go-sample-app/pkg/domain/models"
 	"go-sample-app/pkg/infrastructure"
@@ -11,7 +12,7 @@ import (
 type UserRepository struct {
 }
 
-func (rep *UserRepository) GetAllUsers() []models.User {
+func (rep *UserRepository) GetAll() []models.User {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
 	rows, err := db.Query("select id, name from users")
@@ -36,10 +37,11 @@ func (rep *UserRepository) GetAllUsers() []models.User {
 		log.Fatal(err)
 	}
 
+	log.Printf("ユーザー一覧を取得しました")
 	return users
 }
 
-func (rep *UserRepository) FindUserById(id string) models.User {
+func (rep *UserRepository) FindById(id string) models.User {
 	var user models.User
 
 	// まだコネクトを都度行う
@@ -62,5 +64,70 @@ func (rep *UserRepository) FindUserById(id string) models.User {
 		log.Fatal(err)
 	}
 
+	log.Printf("ユーザーを取得しました")
+	log.Printf("id = %d", user.Id)
 	return user
+}
+
+func (rep *UserRepository) New() {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+
+	// TODO: 汎用的にする
+	res, err := db.Exec("INSERT INTO users(name, created_at, updated_at) VALUES(?, ?, ?)",
+		"name",
+		time.Now(), // 現在時刻
+		time.Now(), // 現在時刻
+	)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	lastId, err := res.LastInsertId()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("新規ユーザーを作成しました")
+	log.Printf("id = %d, affected = %d\n", lastId, rowCnt)
+}
+
+// TODO: 汎用的にする
+func (rep *UserRepository) Update(id string) {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+	// TODO: 汎用的にする
+	res, err := db.Exec("UPDATE users set updated_at = ? WHERE id = ?", time.Now(), id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("ユーザーを更新しました")
+	log.Printf("id = %s, affected = %d\n", id, rowCnt)
+}
+
+func (rep *UserRepository) Delete(id string) {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+	res, err := db.Exec("DELETE FROM users where id = ?", id)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("ユーザーを削除しました")
+	log.Printf("id = %s, affected = %d\n", id, rowCnt)
 }
