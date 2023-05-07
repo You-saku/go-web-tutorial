@@ -1,7 +1,5 @@
-# go-practice
- - Goのテスト環境(docker)
- - 開発しやすいようにAirを採用する
- - ライブラリはここで試そう
+# go-architecture-proto1
+ - Goのアーキテクチャを考える1
 
 ## 構成
  - golang 1.20
@@ -9,8 +7,8 @@
 
 ## セットアップ
 ```
-$git clone git@github.com:You-saku/go-practice.git
-$cd go-sample-app
+$git clone git@github.com:You-saku/go-architecture-proto1.git
+$cd go-architecture-proto1.git
 $make setup
 $make seeding
 $make start
