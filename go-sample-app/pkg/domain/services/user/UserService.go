@@ -27,3 +27,7 @@ func (s *UserService) ShowUsers() []models.User {
 func (s *UserService) ShowUser(userId string) models.User {
 	return s.Rep.FindUserById(userId)
 }
+
+func (s *UserService) CreateUser() {
+	s.Rep.NewUser()
+}

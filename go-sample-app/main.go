@@ -18,8 +18,8 @@ func main() {
 
 	// net/http
 	http.HandleFunc("/", sampleHandler)
-	http.HandleFunc("/users", userController.UserGetHandler)
-	http.HandleFunc("/users/", userController.UserShowHandler)
+	http.HandleFunc("/users", userController.UsersHandler)
+	http.HandleFunc("/users/", userController.UserHandler)
 
 	http.HandleFunc("/posts", todoController.TodoCreateHandler)
 

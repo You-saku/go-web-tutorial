@@ -3,26 +3,22 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
-	"go-sample-app/pkg/domain/models"
 	repository "go-sample-app/pkg/domain/repositories/user"
 	service "go-sample-app/pkg/domain/services/user"
 )
 
-// GET:users
-func UserGetHandler(w http.ResponseWriter, r *http.Request) {
-	var users []models.User
+// GET:users/{id}
+func UserHandler(w http.ResponseWriter, r *http.Request) {
+	userId := strings.TrimPrefix(r.URL.Path, "/users/")
 
 	// 本番用リポジトリ層
 	repository := repository.UserRepository{}
 	// サービス層作成
 	service := service.NewUserService(&repository)
-	users = service.ShowUsers()
 
-	var output = ""
-	for _, user := range users {
-		output += fmt.Sprintf("id = %d name = %s ", user.Id, user.Name)
-	}
+	user := service.ShowUser(userId)
 
-	fmt.Fprintf(w, output)
+	fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
 }

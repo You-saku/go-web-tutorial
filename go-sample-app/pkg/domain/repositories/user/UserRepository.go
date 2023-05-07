@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"log"
+	"time"
 
 	"go-sample-app/pkg/domain/models"
 	"go-sample-app/pkg/infrastructure"
@@ -36,6 +37,7 @@ func (rep *UserRepository) GetAllUsers() []models.User {
 		log.Fatal(err)
 	}
 
+	log.Printf("ユーザー一覧を取得しました")
 	return users
 }
 
@@ -62,5 +64,34 @@ func (rep *UserRepository) FindUserById(id string) models.User {
 		log.Fatal(err)
 	}
 
+	log.Printf("ユーザーを取得しました")
+	log.Printf("id = %d", user.Id)
 	return user
+}
+
+func (rep *UserRepository) NewUser() {
+	// まだコネクトを都度行う
+	db, err := infrastructure.ConnectDB()
+
+	// TODO: 汎用的にする
+	res, err := db.Exec("INSERT INTO users(name, created_at, updated_at) VALUES(?, ?, ?)",
+		"name",
+		time.Now(), // 現在時刻
+		time.Now(), // 現在時刻
+	)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	lastId, err := res.LastInsertId()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCnt, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("新規ユーザーを作成しました")
+	log.Printf("id = %d, affected = %d\n", lastId, rowCnt)
 }
