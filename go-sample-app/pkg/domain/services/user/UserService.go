@@ -21,21 +21,21 @@ func NewUserService(rep UserRepositories.IUserRepository) *UserService {
 }
 
 func (s *UserService) ShowUsers() []models.User {
-	return s.Rep.GetAllUsers()
+	return s.Rep.GetAll()
 }
 
 func (s *UserService) ShowUser(userId string) models.User {
-	return s.Rep.FindUserById(userId)
+	return s.Rep.FindById(userId)
 }
 
 func (s *UserService) CreateUser() {
-	s.Rep.NewUser()
+	s.Rep.New()
 }
 
 func (s *UserService) UpdateUser(userId string) {
-	s.Rep.UpdateUser(userId)
+	s.Rep.Update(userId)
 }
 
 func (s *UserService) DeleteUser(userId string) {
-	s.Rep.DeleteUser(userId)
+	s.Rep.Delete(userId)
 }

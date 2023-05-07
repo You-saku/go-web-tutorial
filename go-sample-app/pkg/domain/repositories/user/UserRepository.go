@@ -12,7 +12,7 @@ import (
 type UserRepository struct {
 }
 
-func (rep *UserRepository) GetAllUsers() []models.User {
+func (rep *UserRepository) GetAll() []models.User {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
 	rows, err := db.Query("select id, name from users")
@@ -41,7 +41,7 @@ func (rep *UserRepository) GetAllUsers() []models.User {
 	return users
 }
 
-func (rep *UserRepository) FindUserById(id string) models.User {
+func (rep *UserRepository) FindById(id string) models.User {
 	var user models.User
 
 	// まだコネクトを都度行う
@@ -69,7 +69,7 @@ func (rep *UserRepository) FindUserById(id string) models.User {
 	return user
 }
 
-func (rep *UserRepository) NewUser() {
+func (rep *UserRepository) New() {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
 
@@ -97,7 +97,7 @@ func (rep *UserRepository) NewUser() {
 }
 
 // TODO: 汎用的にする
-func (rep *UserRepository) UpdateUser(id string) {
+func (rep *UserRepository) Update(id string) {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
 	// TODO: 汎用的にする
@@ -115,7 +115,7 @@ func (rep *UserRepository) UpdateUser(id string) {
 	log.Printf("id = %s, affected = %d\n", id, rowCnt)
 }
 
-func (rep *UserRepository) DeleteUser(id string) {
+func (rep *UserRepository) Delete(id string) {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
 	res, err := db.Exec("DELETE FROM users where id = ?", id)
