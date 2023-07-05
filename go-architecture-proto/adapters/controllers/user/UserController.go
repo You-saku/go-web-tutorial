@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	repository "go-sample-app/pkg/domain/repositories/user"
-	service "go-sample-app/pkg/domain/services/user"
+	repository "go-architecture-proto/entities/repositories/user"
+	service "go-architecture-proto/usecases/user"
 )
 
 // GET:users/{id}

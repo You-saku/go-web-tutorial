@@ -1,4 +1,4 @@
-# go-architecture-proto1
+# go-architecture-proto
  - Goのアーキテクチャを考える1
 
 ## 構成
@@ -7,8 +7,8 @@
 
 ## セットアップ
 ```
-$git clone git@github.com:You-saku/go-architecture-proto1.git
-$cd go-architecture-proto1.git
+$git clone git@github.com:You-saku/go-architecture-proto.git
+$cd go-architecture-proto.git
 $make setup
 $make seeding
 $make start

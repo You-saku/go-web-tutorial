@@ -1,4 +1,4 @@
-module go-sample-app
+module go-architecture-proto
 
 go 1.20
 
