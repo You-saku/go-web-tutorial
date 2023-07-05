@@ -1,5 +1,5 @@
 # go-architecture-proto
- - Goのアーキテクチャを考える1
+ - Goのアーキテクチャを考える
 
 ## 構成
  - golang 1.20
