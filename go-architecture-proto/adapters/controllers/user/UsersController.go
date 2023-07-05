@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"go-sample-app/pkg/domain/models"
-	repository "go-sample-app/pkg/domain/repositories/user"
-	service "go-sample-app/pkg/domain/services/user"
+	"go-architecture-proto/entities/models"
+	repository "go-architecture-proto/entities/repositories/user"
+	service "go-architecture-proto/usecases/user"
 )
 
 // GET:users

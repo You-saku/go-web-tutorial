@@ -1,5 +1,5 @@
-# go-architecture-proto1
- - Goのアーキテクチャを考える1
+# go-architecture-proto
+ - Goのアーキテクチャを考える
 
 ## 構成
  - golang 1.20
@@ -7,8 +7,8 @@
 
 ## セットアップ
 ```
-$git clone git@github.com:You-saku/go-architecture-proto1.git
-$cd go-architecture-proto1.git
+$git clone git@github.com:You-saku/go-architecture-proto.git
+$cd go-architecture-proto.git
 $make setup
 $make seeding
 $make start

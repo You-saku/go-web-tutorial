@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"go-sample-app/pkg/domain/models"
-	"go-sample-app/pkg/infrastructure"
+	"go-architecture-proto/entities/models"
+	"go-architecture-proto/infrastructure"
 )
 
 // 本番用のリポジトリ

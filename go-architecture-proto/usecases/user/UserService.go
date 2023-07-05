@@ -1,8 +1,8 @@
 package services
 
 import (
-	"go-sample-app/pkg/domain/models"
-	UserRepositories "go-sample-app/pkg/domain/repositories/user"
+	"go-architecture-proto/entities/models"
+	UserRepositories "go-architecture-proto/entities/repositories/user"
 )
 
 type UserService struct {
