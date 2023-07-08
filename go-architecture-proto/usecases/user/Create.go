@@ -1,7 +1,6 @@
-package services
+package usecases
 
 import (
-	"go-architecture-proto/entities/models"
 	UserRepositories "go-architecture-proto/entities/repositories/user"
 )
 
@@ -20,22 +19,6 @@ func NewUserService(rep UserRepositories.IUserRepository) *UserService {
 	return userService
 }
 
-func (s *UserService) ShowUsers() []models.User {
-	return s.Rep.GetAll()
-}
-
-func (s *UserService) ShowUser(userId string) models.User {
-	return s.Rep.FindById(userId)
-}
-
 func (s *UserService) CreateUser() {
 	s.Rep.New()
-}
-
-func (s *UserService) UpdateUser(userId string) {
-	s.Rep.Update(userId)
-}
-
-func (s *UserService) DeleteUser(userId string) {
-	s.Rep.Delete(userId)
 }

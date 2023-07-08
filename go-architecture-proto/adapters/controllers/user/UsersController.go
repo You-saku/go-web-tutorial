@@ -6,7 +6,7 @@ import (
 
 	"go-architecture-proto/entities/models"
 	repository "go-architecture-proto/entities/repositories/user"
-	service "go-architecture-proto/usecases/user"
+	usecase "go-architecture-proto/usecases/user"
 )
 
 // GET:users
@@ -17,13 +17,13 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 	// 本番用リポジトリ層
 	repository := repository.UserRepository{}
 	// サービス層作成
-	service := service.NewUserService(&repository)
+	service := usecase.NewUserService(&repository)
 
 	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
 
 	// GET
 	if requestMethod == "GET" {
-		users = service.ShowUsers()
+		users = usecase.ShowUsers()
 		var output = ""
 		for _, user := range users {
 			output += fmt.Sprintf("id = %d name = %s ", user.Id, user.Name)
@@ -37,7 +37,7 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 
 	// POST
 	if requestMethod == "POST" {
-		service.CreateUser()
+		usecase.CreateUser()
 		w.WriteHeader(http.StatusCreated)
 		return
 	}

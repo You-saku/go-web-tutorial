@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	repository "go-architecture-proto/entities/repositories/user"
-	service "go-architecture-proto/usecases/user"
+	usecase "go-architecture-proto/usecases/user"
 )
 
 // GET:users/{id}
@@ -16,24 +16,24 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	// 本番用リポジトリ層
 	repository := repository.UserRepository{}
 	// サービス層作成
-	service := service.NewUserService(&repository)
+	service := usecase.NewUserService(&repository)
 
 	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
 
 	// GET
 	if requestMethod == "GET" {
-		user := service.ShowUser(userId)
+		user := usecase.ShowUser(userId)
 		fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
 		return
 	}
 	// PUT
 	if requestMethod == "PUT" {
-		service.UpdateUser(userId)
+		usecase.UpdateUser(userId)
 		return
 	}
 	// DELETE
 	if requestMethod == "DELETE" {
-		service.DeleteUser(userId)
+		usecase.DeleteUser(userId)
 		return
 	}
 
