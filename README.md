@@ -1,5 +1,5 @@
 # go-architecture-proto
- - Goのアーキテクチャを考える
+ - GoでWebAPIを作ってみる
 
 ## 構成
  - golang 1.20
