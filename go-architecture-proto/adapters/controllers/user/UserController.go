@@ -9,6 +9,8 @@ import (
 )
 
 // GET:users/{id}
+// PUT:users/{id}
+// DELETE:users/{id}
 func UserHandler(w http.ResponseWriter, r *http.Request) {
 	userId := strings.TrimPrefix(r.URL.Path, "/users/")
 
