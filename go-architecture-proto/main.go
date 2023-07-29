@@ -14,9 +14,8 @@ func sampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
 	// net/http
-	//http.HandleFunc("/", sampleHandler)
+	http.HandleFunc("/", sampleHandler)
 
 	http.HandleFunc("/users", userController.UsersHandler)
 	http.HandleFunc("/users/", userController.UserHandler)

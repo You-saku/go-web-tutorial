@@ -20,8 +20,8 @@ func NewUserUsecase(rep userRepository.IUserRepository) *UserUsecase {
 	return userUsecase
 }
 
-func (us *UserUsecase) CreateUser() {
-	us.rep.New()
+func (us *UserUsecase) CreateUser(user models.User) {
+	us.rep.New(user)
 }
 
 func (us *UserUsecase) GetUser(userId string) models.User {
@@ -32,8 +32,8 @@ func (us *UserUsecase) GetUsers() []models.User {
 	return us.rep.GetAll()
 }
 
-func (us *UserUsecase) UpdateUser(userId string) {
-	us.rep.Update(userId)
+func (us *UserUsecase) UpdateUser(userId string, user models.User) {
+	us.rep.Update(userId, user)
 }
 
 func (us *UserUsecase) DeleteUser(userId string) {

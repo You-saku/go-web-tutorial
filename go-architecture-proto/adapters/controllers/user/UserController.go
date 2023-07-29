@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
+	"go-architecture-proto/entities/models"
 	"net/http"
 	"strings"
 
@@ -29,7 +31,10 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// PUT
 	if requestMethod == "PUT" {
-		userUsecase.UpdateUser(userId)
+		var user models.User
+		json.NewDecoder(r.Body).Decode(&user) // リクエストボディをデコード
+		fmt.Fprintf(w, "name = %s\n", user.Name)
+		userUsecase.UpdateUser(userId, user)
 		return
 	}
 	// DELETE
