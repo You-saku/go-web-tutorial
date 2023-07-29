@@ -15,7 +15,7 @@ type UserRepository struct {
 func (rep *UserRepository) GetAll() []models.User {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
-	rows, err := db.Query("select id, name from users")
+	rows, err := db.Query("select id, name, email from users")
 
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +26,7 @@ func (rep *UserRepository) GetAll() []models.User {
 
 	for rows.Next() {
 		var user models.User
-		err := rows.Scan(&user.Id, &user.Name)
+		err := rows.Scan(&user.Id, &user.Name, &user.Email)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -44,7 +44,7 @@ func (rep *UserRepository) GetAll() []models.User {
 func (rep *UserRepository) FindById(id string) models.User {
 	var user models.User
 
-	// まだコネクトを都度行う
+	// コネクト
 	db, err := infrastructure.ConnectDB()
 	rows, err := db.Query("select id, name from users where ID = ?", id)
 
@@ -69,13 +69,14 @@ func (rep *UserRepository) FindById(id string) models.User {
 	return user
 }
 
-func (rep *UserRepository) New() {
-	// まだコネクトを都度行う
+func (rep *UserRepository) New(user models.User) {
+	// コネクト
 	db, err := infrastructure.ConnectDB()
 
-	// TODO: 汎用的にする
-	res, err := db.Exec("INSERT INTO users(name, created_at, updated_at) VALUES(?, ?, ?)",
-		"name",
+	res, err := db.Exec("INSERT INTO users(name, email, age, created_at, updated_at) VALUES(?, ?, ?, ?, ?)",
+		user.Name,
+		user.Email,
+		user.Age,
 		time.Now(), // 現在時刻
 		time.Now(), // 現在時刻
 	)
@@ -96,12 +97,10 @@ func (rep *UserRepository) New() {
 	log.Printf("id = %d, affected = %d\n", lastId, rowCnt)
 }
 
-// TODO: 汎用的にする
-func (rep *UserRepository) Update(id string) {
-	// まだコネクトを都度行う
+func (rep *UserRepository) Update(id string, user models.User) {
+	// コネクト
 	db, err := infrastructure.ConnectDB()
-	// TODO: 汎用的にする
-	res, err := db.Exec("UPDATE users set updated_at = ? WHERE id = ?", time.Now(), id)
+	res, err := db.Exec("UPDATE users set name = ?, updated_at = ? WHERE id = ?", user.Name, time.Now(), id)
 
 	if err != nil {
 		log.Fatal(err)
@@ -116,7 +115,7 @@ func (rep *UserRepository) Update(id string) {
 }
 
 func (rep *UserRepository) Delete(id string) {
-	// まだコネクトを都度行う
+	// コネクト
 	db, err := infrastructure.ConnectDB()
 	res, err := db.Exec("DELETE FROM users where id = ?", id)
 

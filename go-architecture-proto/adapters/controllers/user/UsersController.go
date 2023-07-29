@@ -1,11 +1,13 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"go-architecture-proto/entities/models"
 	"net/http"
 
-	usersUsecase "go-architecture-proto/usecases/user"
+	userRepository "go-architecture-proto/entities/repositories/user"
+	userUsecase "go-architecture-proto/usecases/user"
 )
 
 // GET:users
@@ -13,14 +15,19 @@ import (
 func UsersHandler(w http.ResponseWriter, r *http.Request) {
 	var users []models.User
 
+	// 本番用リポジトリ層
+	ur := userRepository.UserRepository{}
+	// サービス層作成
+	userUsecase := userUsecase.NewUserUsecase(&ur)
+
 	requestMethod := r.Method // これでhttpリクエストのメソッドを取得
 
 	// GET
 	if requestMethod == "GET" {
-		users = usersUsecase.ShowUsers()
+		users = userUsecase.GetUsers()
 		var output = ""
 		for _, user := range users {
-			output += fmt.Sprintf("id = %d name = %s ", user.Id, user.Name)
+			output += fmt.Sprintf("id = %d name = %s email = %s\n", user.Id, user.Name, user.Email.String)
 		}
 
 		// ステータスコードを設定
@@ -31,7 +38,10 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 
 	// POST
 	if requestMethod == "POST" {
-		usersUsecase.CreateUser()
+		var user models.User
+		json.NewDecoder(r.Body).Decode(&user) // リクエストボディをデコード
+
+		userUsecase.CreateUser(user)
 		w.WriteHeader(http.StatusCreated)
 		return
 	}

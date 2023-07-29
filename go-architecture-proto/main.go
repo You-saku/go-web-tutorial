@@ -14,7 +14,6 @@ func sampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
 	// net/http
 	http.HandleFunc("/", sampleHandler)
 

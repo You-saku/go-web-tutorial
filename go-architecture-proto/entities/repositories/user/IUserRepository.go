@@ -7,7 +7,7 @@ import (
 type IUserRepository interface {
 	FindById(id string) models.User
 	GetAll() []models.User
-	New()
-	Update(id string)
+	New(user models.User)
+	Update(id string, user models.User)
 	Delete(id string)
 }
