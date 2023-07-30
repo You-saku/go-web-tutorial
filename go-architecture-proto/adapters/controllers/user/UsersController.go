@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"go-architecture-proto/entities/models"
 	"net/http"
 
@@ -25,14 +24,17 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 	// GET
 	if requestMethod == "GET" {
 		users = userUsecase.GetUsers()
-		var output = ""
-		for _, user := range users {
-			output += fmt.Sprintf("id = %d name = %s email = %s\n", user.Id, user.Name, user.Email.String)
-		}
+
+		// 文字列で返す場合 for debug
+		// var output = ""
+		// for _, user := range users {
+		// 	output += fmt.Sprintf("id = %d name = %s email = %s\n", user.Id, user.Name, user.Email)
+		// }
 
 		// ステータスコードを設定
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, output)
+		json.NewEncoder(w).Encode(users)
+		// fmt.Fprintf(w, output) // for debug
 		return
 	}
 

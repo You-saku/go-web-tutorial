@@ -1,0 +1,158 @@
+openapi: 3.0.0
+
+info:
+  title: echo-docker
+  version: 1.0.0
+servers: # base endpoint
+  - url: http://localhost:80
+    description: base endpoint.
+paths:
+  /users:
+    post:
+      summary: create new user.
+      tags: 
+        - user
+      description: create new user resource.
+      requestBody:
+        required:
+          true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                  example: "you-saku"
+                Email:
+                  type: string
+                  example: "sample@example.com"
+                Age:
+                  type: integer
+                  example: 10
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '201':
+          description: success create new user.
+    get:
+      summary: get users.
+      tags: 
+        - user
+      description: get all users.
+      responses:
+        '200':
+          description: success get all users.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "you-saku"
+                    email:
+                      type: string
+                      example: "sample@example.com"
+                    age:
+                      type: integer
+                      example: 10
+  /users/{id}:
+    get:
+      summary: get a user.
+      tags: 
+        - user
+      description: get a user.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minItems: 1
+      responses:
+        '200':
+          description: success get a user.
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "you-saku"
+                    email:
+                      type: string
+                      example: "sample@example.com"
+                    age:
+                      type: integer
+                      example: 10
+    put:
+      summary: update a user.
+      tags: 
+        - user
+      description: update a user.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minItems: 1
+      requestBody:
+        required:
+          true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Name:
+                  type: string
+                  example: "you-saku"
+                Email:
+                  type: string
+                  example: "sample@example.com"
+                Age:
+                  type: integer
+                  example: 10
+              required:
+                - name
+                - email
+      responses:
+        '200':
+          description: success update a user.
+    delete:
+      summary: delete a user.
+      tags: 
+        - user
+      description: delete a user.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            minItems: 1
+      responses:
+        '200':
+          description: success delete a user.
+  /:
+    get:
+      summary: sample endpoint.
+      tags:
+        - sample
+      description: test.
+      responses:
+        '200':
+          description: 「api」 word.

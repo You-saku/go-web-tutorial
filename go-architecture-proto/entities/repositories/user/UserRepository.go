@@ -46,7 +46,7 @@ func (rep *UserRepository) FindById(id string) models.User {
 
 	// コネクト
 	db, err := infrastructure.ConnectDB()
-	rows, err := db.Query("select id, name from users where ID = ?", id)
+	rows, err := db.Query("select id, name, email from users where ID = ?", id)
 
 	if err != nil {
 		log.Fatal(err)
@@ -54,7 +54,7 @@ func (rep *UserRepository) FindById(id string) models.User {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&user.Id, &user.Name)
+		err := rows.Scan(&user.Id, &user.Name, &user.Email)
 		if err != nil {
 			log.Fatal(err)
 		}

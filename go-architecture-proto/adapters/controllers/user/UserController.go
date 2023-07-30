@@ -26,7 +26,9 @@ func UserHandler(w http.ResponseWriter, r *http.Request) {
 	// GET
 	if requestMethod == "GET" {
 		user := userUsecase.GetUser(userId)
-		fmt.Fprintf(w, "id = %d name = %s\n", user.Id, user.Name)
+
+		json.NewEncoder(w).Encode(user)
+		//fmt.Fprintf(w, "id = %d name = %s email = %s\n", user.Id, user.Name, user.Email) // for debug
 		return
 	}
 	// PUT
