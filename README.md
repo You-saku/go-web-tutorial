@@ -1,4 +1,4 @@
-# go-architecture-proto
+# go-web-api-sample
  - GoでWebAPIを作ってみる
 
 ## 構成
@@ -7,19 +7,19 @@
 
 ## セットアップ
 ```
-$git clone git@github.com:You-saku/go-architecture-proto.git
-$cd go-architecture-proto.git
-$make setup
-$make seeding
-$make start
+git clone git@github.com:You-saku/go-architecture-proto.git
+cd go-architecture-proto.git
+make setup
+make seeding
+make start
 ```
 
 ## セットアップ(n > 2)
 ```
-$make up
+make up
 ```
 
 ## コンテナを止める
 ```
-$make down
+make down
 ```
