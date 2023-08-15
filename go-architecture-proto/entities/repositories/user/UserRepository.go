@@ -15,7 +15,7 @@ type UserRepository struct {
 func (rep *UserRepository) GetAll() []models.User {
 	// まだコネクトを都度行う
 	db, err := infrastructure.ConnectDB()
-	rows, err := db.Query("select id, name, email from users")
+	rows, err := db.Query("select id, name, email, age from users")
 
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +26,7 @@ func (rep *UserRepository) GetAll() []models.User {
 
 	for rows.Next() {
 		var user models.User
-		err := rows.Scan(&user.Id, &user.Name, &user.Email)
+		err := rows.Scan(&user.Id, &user.Name, &user.Email, &user.Age)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -46,7 +46,7 @@ func (rep *UserRepository) FindById(id string) models.User {
 
 	// コネクト
 	db, err := infrastructure.ConnectDB()
-	rows, err := db.Query("select id, name, email from users where ID = ?", id)
+	rows, err := db.Query("select id, name, email, age from users where ID = ?", id)
 
 	if err != nil {
 		log.Fatal(err)
@@ -54,7 +54,7 @@ func (rep *UserRepository) FindById(id string) models.User {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&user.Id, &user.Name, &user.Email)
+		err := rows.Scan(&user.Id, &user.Name, &user.Email, &user.Age)
 		if err != nil {
 			log.Fatal(err)
 		}

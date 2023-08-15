@@ -48,7 +48,8 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 
 		// ステータスコードを設定
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(users)
+		json.NewEncoder(w).Encode(users) // memo structで定義されてるものが全て返る
+
 		// fmt.Fprintf(w, output) // for debug
 		return
 	}
