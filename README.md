@@ -4,6 +4,7 @@
 ## 構成
  - golang 1.20
  - mysql 5.7
+ - go-playground/validator/v10
 
 ## セットアップ
 ```
