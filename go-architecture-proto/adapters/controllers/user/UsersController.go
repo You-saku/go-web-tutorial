@@ -44,6 +44,14 @@ func UsersHandler(w http.ResponseWriter, r *http.Request) {
 		var user models.User
 		json.NewDecoder(r.Body).Decode(&user) // リクエストボディをデコード
 
+		err := user.Validate()
+		if err != nil {
+			w.WriteHeader(http.StatusUnprocessableEntity)
+			json.NewEncoder(w).Encode(err)
+
+			return
+		}
+
 		userUsecase.CreateUser(user)
 		w.WriteHeader(http.StatusCreated)
 		return
