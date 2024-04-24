@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"go-architecture-proto/entities/models"
+	"api/entities/models"
 )
 
 type IUserRepository interface {

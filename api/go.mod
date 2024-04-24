@@ -1,4 +1,4 @@
-module go-architecture-proto
+module api
 
 go 1.20
 

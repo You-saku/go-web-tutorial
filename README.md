@@ -1,5 +1,6 @@
-# go-web-api-sample
+# go-adi-sample
  - GoでWebAPIを作ってみる
+ - DIをやってみる
 
 ## 構成
  - golang 1.20
@@ -7,8 +8,8 @@
 
 ## セットアップ
 ```
-git clone git@github.com:You-saku/go-architecture-proto.git
-cd go-architecture-proto.git
+git clone git@github.com:You-saku/go-di-sample.git
+cd go-di-sample
 make setup
 make seeding
 make start

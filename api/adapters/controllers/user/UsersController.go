@@ -1,12 +1,12 @@
 package controllers
 
 import (
+	"api/entities/models"
 	"encoding/json"
-	"go-architecture-proto/entities/models"
 	"net/http"
 
-	userRepository "go-architecture-proto/entities/repositories/user"
-	userUsecase "go-architecture-proto/usecases/user"
+	userRepository "api/entities/repositories/user"
+	userUsecase "api/usecases/user"
 )
 
 // GET:users

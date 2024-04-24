@@ -1,14 +1,14 @@
 package controllers
 
 import (
+	"api/entities/models"
 	"encoding/json"
 	"fmt"
-	"go-architecture-proto/entities/models"
 	"net/http"
 	"strings"
 
-	userRepository "go-architecture-proto/entities/repositories/user"
-	userUsecase "go-architecture-proto/usecases/user"
+	userRepository "api/entities/repositories/user"
+	userUsecase "api/usecases/user"
 )
 
 // GET:users/{id}

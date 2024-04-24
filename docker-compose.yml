@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  go:
+  api:
     build:
       context: . # Dockerfileで親ディレクトリを参照するときに使うらしいぞ
       dockerfile: ./docker/go/Dockerfile

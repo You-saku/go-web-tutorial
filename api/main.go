@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	userController "go-architecture-proto/adapters/controllers/user"
+	userController "api/adapters/controllers/user"
 )
 
 // sample routing

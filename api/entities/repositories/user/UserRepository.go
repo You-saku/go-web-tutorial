@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"go-architecture-proto/entities/models"
-	"go-architecture-proto/infrastructure"
+	"api/entities/models"
+	"api/infrastructure"
 )
 
 // 本番用のリポジトリ
