@@ -4,6 +4,5 @@ FROM golang:1.20-alpine
 COPY . /go/src/app
 
 # ワーキングディレクトリの設定
-WORKDIR /go/src/app/go-architecture-proto
+WORKDIR /go/src/app/api
 RUN go mod download
-RUN go install github.com/cosmtrek/air@latest

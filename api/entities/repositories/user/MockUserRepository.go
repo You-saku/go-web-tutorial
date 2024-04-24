@@ -3,7 +3,7 @@ package repositories
 import (
 	"strconv"
 
-	"go-architecture-proto/entities/models"
+	"api/entities/models"
 )
 
 // モック用のリポジトリ

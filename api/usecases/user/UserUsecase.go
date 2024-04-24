@@ -1,8 +1,8 @@
 package usecases
 
 import (
-	"go-architecture-proto/entities/models"
-	userRepository "go-architecture-proto/entities/repositories/user"
+	"api/entities/models"
+	userRepository "api/entities/repositories/user"
 )
 
 type UserUsecase struct {
