@@ -11,8 +11,8 @@ down:
 ps:
 	docker compose ps
 go:
-	docker compose exec api sh
+	docker compose exec web sh
 db:
 	docker compose exec db mysql --user=user --password=secret
 start:
-	docker compose exec api go run main.go
+	docker compose exec web go run main.go

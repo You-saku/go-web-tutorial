@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"api/entities/models"
-	"api/infrastructure"
+	"web/entities/models"
+	"web/infrastructure"
 )
 
 // 本番用のリポジトリ

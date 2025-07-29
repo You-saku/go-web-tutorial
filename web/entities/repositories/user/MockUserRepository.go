@@ -3,7 +3,7 @@ package repositories
 import (
 	"strconv"
 
-	"api/entities/models"
+	"web/entities/models"
 )
 
 // モック用のリポジトリ

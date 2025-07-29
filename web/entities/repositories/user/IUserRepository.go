@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"api/entities/models"
+	"web/entities/models"
 )
 
 type IUserRepository interface {
