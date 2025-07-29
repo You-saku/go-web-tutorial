@@ -1,3 +1,4 @@
+// deprecated: This file is now replaced by web/adapters/controllers/UserController.go
 package controllers
 
 import (
