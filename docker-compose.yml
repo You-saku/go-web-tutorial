@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  api:
+  web:
     build:
       context: . # Dockerfileで親ディレクトリを参照するときに使うらしいぞ
       dockerfile: ./docker/go/Dockerfile
@@ -12,6 +12,7 @@ services:
       - .:/go/src/app
     tty: true # コンテナ常時起動(これがないと実行してコンテナが落ちる?) コンテナ作って実行できるようにするにはなきゃダメ??
   db: # mysql5.7
+    platform: linux/amd64
     container_name: db
     image: mysql:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

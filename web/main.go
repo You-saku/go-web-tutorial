@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 
-	userController "api/adapters/controllers/user"
+	userController "web/adapters/controllers/user"
 )
 
 // sample routing
 func sampleHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there !!")
+	fmt.Fprintf(w, "Hello golang !!")
 }
 
 func main() {

@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"api/entities/models"
+	"web/entities/models"
 	"encoding/json"
 	"net/http"
 
-	userRepository "api/entities/repositories/user"
-	userUsecase "api/usecases/user"
+	userRepository "web/entities/repositories/user"
+	userUsecase "web/usecases/user"
 )
 
 // GET:users

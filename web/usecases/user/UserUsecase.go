@@ -1,8 +1,8 @@
 package usecases
 
 import (
-	"api/entities/models"
-	userRepository "api/entities/repositories/user"
+	"web/entities/models"
+	userRepository "web/entities/repositories/user"
 )
 
 type UserUsecase struct {
