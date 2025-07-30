@@ -6,36 +6,34 @@ import (
 )
 
 type UserUsecase struct {
-	rep userRepository.IUserRepository
+	ur userRepository.IUserRepository
 }
 
 /**
  * コンストラクタ(Effective Goにあった)
  * https://d-tsuji.github.io/effective_go/documents/effective_go_ja.html#id19
  */
-func NewUserUsecase(rep userRepository.IUserRepository) *UserUsecase {
-	userUsecase := new(UserUsecase)
-	userUsecase.rep = rep
-
+func NewUserUsecase(ur userRepository.IUserRepository) *UserUsecase {
+	userUsecase := &UserUsecase{ur: ur}
 	return userUsecase
 }
 
 func (us *UserUsecase) CreateUser(user models.User) {
-	us.rep.New(user)
+	us.ur.New(user)
 }
 
 func (us *UserUsecase) GetUser(userId string) models.User {
-	return us.rep.FindById(userId)
+	return us.ur.FindById(userId)
 }
 
 func (us *UserUsecase) GetUsers() []models.User {
-	return us.rep.GetAll()
+	return us.ur.GetAll()
 }
 
 func (us *UserUsecase) UpdateUser(userId string, user models.User) {
-	us.rep.Update(userId, user)
+	us.ur.Update(userId, user)
 }
 
 func (us *UserUsecase) DeleteUser(userId string) {
-	us.rep.Delete(userId)
+	us.ur.Delete(userId)
 }

@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	userController "web/adapters/controllers/user"
+	"web/adapters/controllers"
 )
 
 // sample routing
@@ -14,11 +13,16 @@ func sampleHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// net/http
-	http.HandleFunc("/", sampleHandler)
+	// UserControllerのインスタンスを作成
+	userController := controllers.NewUserController()
 
-	http.HandleFunc("/users", userController.UsersHandler)
-	http.HandleFunc("/users/", userController.UserHandler)
+	router := http.NewServeMux()
+	router.HandleFunc("GET /", sampleHandler)
+	router.HandleFunc("GET /api/users", userController.GetAll)
+	router.HandleFunc("GET /api/users/", userController.GetById)
+	router.HandleFunc("POST /api/users", userController.Create)
+	router.HandleFunc("PUT /api/users/", userController.Update)
+	router.HandleFunc("DELETE /api/users/", userController.Delete)
 
-	log.Fatal(http.ListenAndServe(":80", nil))
+	log.Fatal(http.ListenAndServe(":80", router))
 }

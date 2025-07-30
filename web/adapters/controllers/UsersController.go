@@ -1,3 +1,4 @@
+// deprecated: This file is now replaced by web/adapters/controllers/UserController.go
 package controllers
 
 import (
@@ -6,7 +7,7 @@ import (
 	"net/http"
 
 	userRepository "web/entities/repositories/user"
-	userUsecase "web/usecases/user"
+	userUsecase "web/usecases"
 )
 
 // GET:users
