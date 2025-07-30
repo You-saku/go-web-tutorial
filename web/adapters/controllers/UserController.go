@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	userRepository "web/entities/repositories/user"
-	userUsecase "web/usecases/user"
+	userUsecase "web/usecases"
 )
 
 type UserController struct {
@@ -36,7 +36,7 @@ func (uc *UserController) Create (w http.ResponseWriter, r *http.Request) {
 }
 
 func (uc *UserController) Update (w http.ResponseWriter, r *http.Request) {
-	userId := strings.TrimPrefix(r.URL.Path, "/users/")
+	userId := strings.TrimPrefix(r.URL.Path, "/api/users/")
 	var user models.User
 	json.NewDecoder(r.Body).Decode(&user) // リクエストボディをデコード
 
@@ -48,7 +48,7 @@ func (uc *UserController) Update (w http.ResponseWriter, r *http.Request) {
 }
 
 func (uc *UserController) Delete (w http.ResponseWriter, r *http.Request) {
-	userId := strings.TrimPrefix(r.URL.Path, "/users/")
+	userId := strings.TrimPrefix(r.URL.Path, "/api/users/")
 
 	uc.us.DeleteUser(userId)
 	w.WriteHeader(http.StatusOK)
@@ -56,7 +56,7 @@ func (uc *UserController) Delete (w http.ResponseWriter, r *http.Request) {
 }
 
 func (uc *UserController) GetById (w http.ResponseWriter, r *http.Request) {
-	userId := strings.TrimPrefix(r.URL.Path, "/users/")
+	userId := strings.TrimPrefix(r.URL.Path, "/api/users/")
 	user := uc.us.GetUser(userId)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(user)

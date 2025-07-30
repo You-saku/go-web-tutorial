@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	userRepository "web/entities/repositories/user"
-	userUsecase "web/usecases/user"
+	userUsecase "web/usecases"
 )
 
 // GET:users
