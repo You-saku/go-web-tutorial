@@ -4,7 +4,7 @@ info:
   title: go-web-tutorial
   version: 1.0.0
 servers: # base endpoint
-  - url: http://localhost:80
+  - url: http://localhost:80/api
     description: base endpoint.
 paths:
   /users:
@@ -147,12 +147,3 @@ paths:
       responses:
         '200':
           description: success delete a user.
-  /:
-    get:
-      summary: sample endpoint.
-      tags:
-        - sample
-      description: test.
-      responses:
-        '200':
-          description: 「api」 word.
