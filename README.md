@@ -15,7 +15,7 @@ make seeding
 make start
 ```
 
-## セットアップ(n > 2)
+## セットアップ(n > 1)
 ```
 make up
 ```
